@@ -30,11 +30,11 @@ def compare_with_lev(string1, string2):
     max_len = max(len(string1),len(string2))
     ratio = dist/max_len
     lev_ratios.append(ratio)
-    passing = pass_fail(ratio, lev_thresh)
+    return pass_fail(ratio, lev_thresh)
 
 def compare_with_jar(string1, string2):
     """
-    
+    Compares the values with the Jar 
     """
     s1 = string1.lower()
     s2 = string2.lower() 
