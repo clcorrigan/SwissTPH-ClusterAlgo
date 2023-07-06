@@ -12,6 +12,15 @@ jar_distances = []
 lev_ratios = []
 n_sim_values = [] 
 
+def get_jaro_distances():
+    return jar_distances 
+
+def get_lev_ratios():
+    return lev_ratios
+
+def get_n_sim_values():
+    return n_sim_values
+
 
 def pass_fail(ratio, threshold):
     if(ratio >= threshold):
@@ -101,10 +110,9 @@ def compare_with_ngram(s1, s2):
     # Calculate the n-gram similarity value from this 
     ngram_similarity = (len(grams_intersection))/(len(grams_union))
     ngram_distance = 1 - ngram_similarity 
+    n_sim_values.append(ngram_distance)
 
     return pass_fail(ngram_distance, n_thresh)
     
    
-compare_with_ngram("Allgeric Rash", "Allergic Rashh")
 
-    

@@ -30,7 +30,7 @@ data_to_be_sorted
 
 
 ```{python}
-    df_with_buckets = pd.DataFrame(columns = ["dx_oth", "child_id", "category no."])
+    df_with_buckets = pd.DataFrame(columns = ["dx_oth", "child_id", "category_no"])
     df_with_buckets
 ```
 
@@ -48,5 +48,28 @@ data_to_be_sorted
 
 4. Comparing to the criteria
     - This function will take in the patient_data, as the tuple (dx_oth, child_id) and it will decide which bucket to place it in, or if to make a new bucket with it. 
+        - The criteria to place a word in a bucket is that it has to pass at least 2 out of 3 thresholds: 
+            - Lavenshtein Ratio, Jaro-Winkler Distance, and N-Gram Similarity
+        - After running the program on the data from the most recent (as of 06/07/23) TIMCI data from Kenya, the following data was produced: 
 
+```{python}
+import classificationEquations 
 
+for row in data_to_be_sorted.itertuples():
+    for row_sorted in df_with_buckets.itertuples():
+        jaro = classificationEquations.compare_with_jar(row.dx_oth, row_sorted.dx_oth)
+        lev = classificationEquations.compare_with_lev(row.dx_oth, row_sorted.dx_oth)
+        ngram = classificationEquations.compare_with_ngram(row.dx_oth, row_sorted.dx_oth) 
+        
+        if((jaro and lev) or (jaro and ngram) or (lev and ngram)):
+            # row_to_add = {"dx_oth": row.dx_oth, "child_id": row.child_id, "category_no": row_sorted.category_no}
+            # df_with_buckets.loc[len(df_with_buckets)] = [row.dx_oth, row.child_id, row_sorted.category_no]
+            print(len(df_with_buckets))
+
+            # this means that the new data has "passed" the requirements to be in the bucket.
+
+df_with_buckets
+            
+        
+
+```
