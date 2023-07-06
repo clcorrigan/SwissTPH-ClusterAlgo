@@ -75,6 +75,36 @@ def compare_with_jar(string1, string2):
     return pass_fail(dist, jar_thresh)
 
 
-print(compare_with_jar("Allergic Rash", "Allargic Rash"))
+def string_to_grams(string):
+    # Turns the String to a set of grams of a certain size 
+    # The gram_size here is very changable. 
+    gram_size = 3
+    gram_set = set()
+    for i in range(0, len(string)):
+        if(i+gram_size <= len(string)):
+            gram_set.add(string[i:i+gram_size])
+    return gram_set
+
+
+
+def compare_with_ngram(s1, s2):
+
+    # Start by taking the two strings and converting them into sets of 3 letter areas. 
+    # for the purposes of this algorithm, we are going to use 3 grams, this is something that is iterable to increase accuracy 
+    s1_grams = string_to_grams(s1)
+    s2_grams = string_to_grams(s2) 
+
+    # Find the union and the intersection of the two sets
+    grams_union = s1_grams.union(s2_grams)
+    grams_intersection = s1_grams.intersection(s2_grams)
+
+    # Calculate the n-gram similarity value from this 
+    ngram_similarity = (len(grams_intersection))/(len(grams_union))
+    ngram_distance = 1 - ngram_similarity 
+
+    return pass_fail(ngram_distance, n_thresh)
+    
+   
+compare_with_ngram("Allgeric Rash", "Allergic Rashh")
 
     
