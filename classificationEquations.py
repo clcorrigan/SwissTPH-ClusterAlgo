@@ -48,6 +48,11 @@ def compare_with_jar(string1, string2):
     s1 = string1.lower()
     s2 = string2.lower() 
 
+    if(len(s1) == 0 or len(s2) == 0):
+        print(s1, s2)
+        return False 
+
+
     max_dist = floor(max(len(s1), len(s2))/2)-1
     match = 0
 
@@ -62,7 +67,7 @@ def compare_with_jar(string1, string2):
                 match += 1 
                 break 
     if (match == 0):
-        return 0.0
+        return False
     
     t = 0 
     point = 0 
@@ -77,6 +82,7 @@ def compare_with_jar(string1, string2):
     t = t//2
 
     # getting the Jaro Similarity
+
     similarity = (match/len(s1) + match/len(s2) + (match-t)/match)/3.0
 
     # getting the Jaro Distance
