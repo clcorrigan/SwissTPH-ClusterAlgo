@@ -82,18 +82,29 @@ for row in data_to_be_sorted.itertuples():
 df_with_buckets
 ```
 
-On examining these categorizations, we can evaluate whether or not the current thresholds are effective for distingushing between words. 
+On examining these categorizations, we can evaluate whether or not the current thresholds are effective for distingushing between words. Specifically considering how they compare to the IMCI and ICD-11 standards.  
 
 ``` {python}
+import compareToStandards
+import statistics
+
 list_of_dfs = []
 dx_entry_per_category = {}
 for cat_no in buckets:
     list_of_dfs.append(df_with_buckets[df_with_buckets["category_no"] == cat_no])
 
+compareToStandards.readfile()
 
 for df in list_of_dfs:    
     cat_no = df.iloc[0].category_no 
     num_entries = len(df)
     dx_entry_per_category[cat_no] = num_entries
+    compareToStandards.compare_with_df(df)
+
+sort_count = compareToStandards.get_sorting_count()
+
+print(dx_entry_per_category)
+print(470/len(dx_entry_per_category))
+print(statistics.pstdev(dx_entry_per_category.values()))
 
 ```

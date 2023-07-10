@@ -4,9 +4,9 @@ from math import floor, ceil
 
 
 global lev_thresh; global jar_thresh; global n_thresh; 
-lev_thresh = 0.5
-jar_thresh = 0.5
-n_thresh = 0.5
+lev_thresh = 0.3
+jar_thresh = 0.3
+n_thresh = 0.3
 
 jar_distances = []
 lev_ratios = []

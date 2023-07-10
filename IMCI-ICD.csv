@@ -1,0 +1,134 @@
+Value, Category
+S01,Cough
+S02,Fever
+S03,Diarrhoea
+D001,Complicated severe acute malnutrition
+D002,Uncomplicated Severe acute malnutrition
+D003,Very low weight for age
+D004,Moderate malnutrition
+D005,Severe anemia
+D006,Mild/Moderate anemia
+D007,CNS Danger sign
+D008,Very severe disease
+D009,Hypoxaemia
+D010,Very severe febrile disease
+D011,Suspected meningitis
+D012,Simple febrile convulsion
+D013,Severe malaria
+D014,Severe suspected malaria
+D015,Uncomplicated malaria
+D016,Suspected malaria
+D017,Complicated prolonged fever
+D018,Prolonged Fever
+D019,Suspicion of Tuberculosis
+D020,Fever without source presumed bacterial infection
+D021,Fever without source: Presumed viral illness
+D022,Febrile urinary tract infection
+D023,Severe pneumonia / very severe disease
+D024,IMCI/IMAI Pneumonia
+D025,Common cold
+D026,Reactive Airway Disease
+D027,Severe Croup
+D028,Mild Croup
+D029,Suspicion of foreign object in airways
+D030,Significant hemoptysis
+D031,Severe Dehydration
+D032,Some Dehydration
+D033,Severe persistent diarrhoea
+D034,Persistent diarrhea
+D035,Acute diarrhea
+D036,Dysentery
+D037,Severe Abdominal Condition
+D038,Non-Severe Abdominal Condition
+D039,Constipation
+D040,Oxyuriasis
+D041,Loss of appetite
+D042,Pyelonephritis
+D043,Lower urinary tract infection
+D044,Balanitis
+D045,Vulvovaginitis
+D046,Inguinal hernia
+D047,Suspected Testicular Torsion
+D048,Mastoiditis
+D049,Complicated Acute Ear Infection
+D050,Uncomplicated Acute Ear Infection
+D051,Complicated Chronic Ear Infection
+D052,Chronic Ear Infection
+D053,Foreign body in ear
+D054,Dental Abscess
+D055,Tooth pain
+D056,Oral aphthous ulcers
+D057,Oral Candidiasis
+D058,Bacterial Acute Pharyngitis
+D059,Viral Acute Pharyngitis
+D060,Complicated Neck mass
+D061,Infectious uncomplicated lymphadenitis
+D062,Uncomplicated lymphadenopathy
+D063,Mumps
+D064,Bacterial Conjunctivitis
+D065,Viral Conjunctivitis
+D066,Orbital Cellulitis
+D067,Preseptal Cellulitis
+D068,Severe Eye Disease
+D069,Corneal Abrasion
+D070,Complicated abscess
+D071,Simple abscess
+D072,Complicated cellulitis
+D073,Uncomplicated Cellulitis
+D074,Severe complicated measles
+D075,Measles with eye or mouth complications
+D076,Non-severe measles
+D077,Complicated chicken pox
+D078,Uncomplicated chicken pox
+D079,Non specific viral rash
+D080,Scarlet Fever
+D081,Anaphylaxis
+D082,Urticaria
+D083,Eczema
+D083,Atopic dermatitis
+D084,Heat rash (Milliaria crystallina/rubra)
+D085,Diaper rash
+D086,Complicated Impetigo
+D087,Uncomplicated Impetigo
+D088,Extensive folliculitis
+D089,Folliculitis
+D090,Molluscum contagiosum
+D091,Herpes simplex - Oral Lesions (Herpes labialis)
+D092,Generalized (extensive) Tinea corporis
+D093,Tinea corporis
+D094,Tinea Capitis
+D095,Scabies
+D096,Pediculosis (Head lice)
+D097,Osteomyelitis/septic arthritis
+D098,Chronic limp or joint pain
+D099,Acute limp or joint pain
+D100,Complicated deep wound
+D101,Uncomplicated deep wound
+D102,Complicated superifical wound
+D103,Uncomplicated superficial wound
+D104,Confirmed fracture
+D105,Confirmed dislocation
+D106,Suspicion of fracture/dislocation
+D107,Clavicular fracture
+D108,Contusion
+D109,Major head injury
+D110,Moderate Head Injury
+D111,Minor Head Injury
+D112,Major Burn
+D113,Minor Burn
+D114,Inhalation injury
+D115,Carbon monoxide poisoning
+D116,Suspicion of poisoning
+D117,Uncomplicated Suspicion of poisoning
+D118,Major trauma
+D119,Possible HIV
+D120,HIV screening unavailable
+D121,Negative HIV test
+D122,Incomplete vaccination
+D123,Deworming
+D124,Vit A Supplementation
+D125,Known HIV
+D126,Known sickle cell disease
+D127,Cerebral palsy
+D128,Congenital heart disease
+999,Nyingine
