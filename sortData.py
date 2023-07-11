@@ -7,7 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import classificationEquations as ce
 
-def readFile():
+def read_file():
     # when reading this file, this choses the free text and the child_id columns. The child_id will serve as a unique key for each patient 
     filepath = "/Users/clairelichty/summer2023/SwissTPH/AutomatedClassification/02_timci_day0_data.csv"
     raw_df = pd.read_csv(filepath, low_memory=False)
@@ -19,7 +19,6 @@ def readFile():
 def initiate_buckets():
     global buckets; 
     buckets = {0: {"Ex ChildID" : "ExampleDx_oth_value", "ExSecondChildID" : "Example_DX_oth_value_2"}} 
-    print(buckets)
     return buckets
 
 def data_iterator(df):
@@ -29,13 +28,18 @@ def data_iterator(df):
 def sort_patient(dx, id):
     # In this, cat_no is type dict, and patient is as well 
     # It returns a dictionary with the sorted data. 
-
-    for cat_no, patient in buckets:
-        sorted_dx = patient.values()[0] 
+    for cat_no, patient in buckets.items():
+        sorted_dx = list(patient.values())[0]
         total_diff = ce.get_sum_distances(sorted_dx, dx)
-        if(total_diff > 1.0):
-            cat_no[id] = dx
+        if(total_diff < 1.0):
+            patient[id] = dx
+            return; 
     next_cat_no = (max(buckets.keys()) + 1)
     buckets[next_cat_no] = {id:dx}
     return buckets
 
+df = read_file() 
+initiate_buckets()
+data_iterator(df)
+print(buckets.keys())
+print(buckets[130])
