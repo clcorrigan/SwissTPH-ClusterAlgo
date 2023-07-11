@@ -40,14 +40,24 @@ def compare_with_df(dataframe):
             lev_comp = classificationEquations.compare_with_lev(comp_value, dx_value)
             n_comp = classificationEquations.compare_with_ngram(comp_value, dx_value)
             if(sum([jar_comp, lev_comp, n_comp]) >= 2):
-                print("match")
                 sorting_count[dx_value] = dataframe
                 count_reduced += len(dataframe)
                 return True
             
 
 
-        
-    
+def find_range(dataframe):
+    first_val = dataframe.iloc[0].dx_oth
+    max_dist = 0
+    for row in dataframe.itertuples():
+        jar_comp = classificationEquations.get_jaro_distance(row.dx_oth, first_val)
+        var_comp = classificationEquations.get_lev_distance(row.dx_oth, first_val)
+        ngram_comp = classificationEquations.get_ngram_distance(row.dx_oth, first_val)
+        total_dist = (jar_comp + var_comp + ngram_comp)
+        print(str(total_dist), first_val, row.dx_oth)
+
+        if total_dist > max_dist:
+            max_dist = total_dist 
+    return max_dist
 
     

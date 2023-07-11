@@ -4,9 +4,9 @@ from math import floor, ceil
 
 
 global lev_thresh; global jar_thresh; global n_thresh; 
-lev_thresh = 0.3
-jar_thresh = 0.3
-n_thresh = 0.3
+lev_thresh = 0.5
+jar_thresh = 0.5
+n_thresh = 0.5
 
 jar_distances = []
 lev_ratios = []
@@ -27,11 +27,10 @@ def pass_fail(ratio, threshold):
         return False 
     else: 
         return True
-
-def compare_with_lev(string1, string2):
+    
+def get_lev_distance(string1, string2):
     """
-    Comparing the two strings with the Lev package/library. 
-    Calls the pass/fail function and returns whether the value has passed or failed. 
+    Calculates the distance between the two strings using the lev package. 
     """
     string1 = string1.lower() 
     string2 = string2.lower()
@@ -39,11 +38,19 @@ def compare_with_lev(string1, string2):
     max_len = max(len(string1),len(string2))
     ratio = dist/max_len
     lev_ratios.append(ratio)
+    return ratio
+
+def compare_with_lev(string1, string2):
+    """
+    Comparing the two strings with the Lev package/library. 
+    Calls the pass/fail function and returns whether the value has passed or failed. 
+    """
+    ratio = get_lev_distance(string1, string2)
     return pass_fail(ratio, lev_thresh)
 
-def compare_with_jar(string1, string2):
+def get_jaro_distance(string1, string2):
     """
-    Compares the values with the Jar 
+    Calculates the distance between two strings. 
     """
     s1 = string1.lower()
     s2 = string2.lower() 
@@ -87,7 +94,28 @@ def compare_with_jar(string1, string2):
 
     # getting the Jaro Distance
     dist = 1 - similarity 
+    return dist
+
+def compare_with_jar(string1, string2):
+    dist = get_jaro_distance(string1, string2) 
     return pass_fail(dist, jar_thresh)
+
+
+def get_ngram_distance(s1, s2):
+    s1 = s1.lower()
+    s2 = s2.lower() 
+
+    s1_grams = string_to_grams(s1)
+    s2_grams = string_to_grams(s2) 
+
+    # Find the union and the intersection of the two sets
+    grams_union = s1_grams.union(s2_grams)
+    grams_intersection = s1_grams.intersection(s2_grams)
+
+    # Calculate the n-gram similarity value from this 
+    ngram_similarity = (len(grams_intersection))/(len(grams_union))
+    ngram_distance = 1 - ngram_similarity 
+    return ngram_distance
 
 
 def string_to_grams(string):
@@ -106,19 +134,13 @@ def compare_with_ngram(s1, s2):
 
     # Start by taking the two strings and converting them into sets of 3 letter areas. 
     # for the purposes of this algorithm, we are going to use 3 grams, this is something that is iterable to increase accuracy 
-    s1_grams = string_to_grams(s1)
-    s2_grams = string_to_grams(s2) 
-
-    # Find the union and the intersection of the two sets
-    grams_union = s1_grams.union(s2_grams)
-    grams_intersection = s1_grams.intersection(s2_grams)
-
-    # Calculate the n-gram similarity value from this 
-    ngram_similarity = (len(grams_intersection))/(len(grams_union))
-    ngram_distance = 1 - ngram_similarity 
+    ngram_distance = get_ngram_distance(s1, s2)
     n_sim_values.append(ngram_distance)
-
     return pass_fail(ngram_distance, n_thresh)
     
    
-
+def get_sum_distances(s1, s2):
+    jar_dist = get_jaro_distance(s1, s2)
+    lev_dist = get_lev_distance(s1, s2)
+    ngram = get_ngram_distance(s1, s2)
+    return (jar_dist + lev_dist + ngram)
